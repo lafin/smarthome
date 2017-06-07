@@ -1,0 +1,19 @@
+{
+    "bridge": {
+        "name": "smarthome",
+        "username": "CC:22:3D:E3:CE:30",
+        "port": 51826,
+        "pin": "123-45-678"
+    },
+    "description": "This is an example configuration file with one fake accessory and one fake platform. You can use this as a template for creating your own configuration file containing devices you actually own.",
+    "accessories": [],
+    "platforms": [
+        {
+            "platform": "mqtt",
+            "name": "mqtt",
+            "url": "mqtt://127.0.0.1",
+            "topic_type": "multiple",
+            "topic_prefix": "homebridge"
+        }
+    ]
+}

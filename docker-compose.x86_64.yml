@@ -1,0 +1,11 @@
+version: '2'
+services:
+
+  nodered:
+    image: lafin/alpine-node-red:x86_64
+
+  homebridge:
+    image: lafin/alpine-homebridge:x86_64
+
+  mosquitto:
+    image: lafin/alpine-mosquitto:x86_64
