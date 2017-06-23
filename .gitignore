@@ -1,3 +1,4 @@
+.vscode
 nodered/config/node_modules
 nodered/config/*
 homebridge/config/*

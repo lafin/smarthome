@@ -12,7 +12,7 @@ RUN npm i --unsafe-perm -g homebridge homebridge-mqtt \
     && apk del .build-deps
 
 USER root
-COPY config/config.json /root/.homebridge/config
+COPY config /root/.homebridge/config
 VOLUME /root/.homebridge
 
 EXPOSE 5353 51826
