@@ -8,9 +8,9 @@ env:
   - ARCH=armhf
 before_script:
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
-  - sed -ie "s/FROM alpine:3.4/FROM multiarch\/alpine:${ARCH}\-v3.4/" nodered/Dockerfile
-  - sed -ie "s/FROM alpine:3.4/FROM multiarch\/alpine:${ARCH}\-v3.4/" homebridge/Dockerfile
-  - sed -ie "s/FROM alpine:3.4/FROM multiarch\/alpine:${ARCH}\-v3.4/" mosquitto/Dockerfile
+  - sed -ie "s/FROM alpine:3.7/FROM multiarch\/alpine:${ARCH}\-v3.7/" nodered/Dockerfile
+  - sed -ie "s/FROM alpine:3.7/FROM multiarch\/alpine:${ARCH}\-v3.7/" homebridge/Dockerfile
+  - sed -ie "s/FROM alpine:3.7/FROM multiarch\/alpine:${ARCH}\-v3.7/" mosquitto/Dockerfile
 script:
   - docker build -t lafin/alpine-node-red:${ARCH} nodered
   - docker build -t lafin/alpine-homebridge:${ARCH} homebridge
