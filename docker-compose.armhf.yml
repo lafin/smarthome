@@ -2,7 +2,7 @@ version: '2'
 services:
 
   nodered:
-    image: lafin/alpine-node-red:armhf
+    image: lafin/alpine-nodered:armhf
 
   homebridge:
     image: lafin/alpine-homebridge:armhf

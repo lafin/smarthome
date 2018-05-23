@@ -6,11 +6,11 @@ services:
     networks:
       - microservicesnet
     environment:
-      - SERVICE_NAME=node-red
+      - SERVICE_NAME=nodered
     ports:
       - "1880:1880"
     volumes:
-      - ${PWD}/nodered/config:/root/.node-red
+      - ${PWD}/nodered/config:/root/.nodered
     links:
       - mosquitto
 

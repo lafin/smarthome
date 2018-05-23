@@ -4,21 +4,23 @@ branches:
   only:
     - master
 env:
-  - ARCH=x86_64
-  - ARCH=armhf
+  matrix:
+    - ARCH=x86_64 NAME=nodered
+    - ARCH=x86_64 NAME=homebridge
+    - ARCH=x86_64 NAME=mosquitto
+
+    - ARCH=armhf  NAME=nodered
+    - ARCH=armhf  NAME=homebridge
+    - ARCH=armhf  NAME=mosquitto
 before_script:
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
-  - sed -ie "s/FROM alpine:3.7/FROM multiarch\/alpine:${ARCH}\-v3.7/" nodered/Dockerfile
-  - sed -ie "s/FROM alpine:3.7/FROM multiarch\/alpine:${ARCH}\-v3.7/" homebridge/Dockerfile
-  - sed -ie "s/FROM alpine:3.7/FROM multiarch\/alpine:${ARCH}\-v3.7/" mosquitto/Dockerfile
+  - sed -ie "s/FROM alpine:3.7/FROM multiarch\/alpine:${ARCH}\-v3.7/" ${NAME}/Dockerfile
 script:
-  - docker build -t lafin/alpine-node-red:${ARCH} nodered
-  - docker build -t lafin/alpine-homebridge:${ARCH} homebridge
-  - docker build -t lafin/alpine-mosquitto:${ARCH} mosquitto
+  - docker build -t lafin/alpine-${NAME}:${ARCH} ${NAME}
 after_success:
   - if [[ $TRAVIS_PULL_REQUEST == 'false' ]]; then
       if [[ $(docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD") ]]; then
-        docker push lafin/alpine-node-red;
+        docker push lafin/alpine-nodered;
         docker push lafin/alpine-homebridge;
         docker push lafin/alpine-mosquitto;
       fi

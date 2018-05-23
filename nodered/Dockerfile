@@ -7,9 +7,9 @@ RUN apk add --no-cache --virtual .build-deps make gcc g++ python \
 RUN npm i --unsafe-perm -g node-red node-red-contrib-mqtt-broker \
     && apk del .build-deps
 
-VOLUME ~/.node-red
+VOLUME ~/.nodered
 
 EXPOSE 1880
 ADD entrypoint.sh .
 ENTRYPOINT ["entrypoint.sh"]
-CMD /usr/bin/node-red -v ~/.node-red/flows.json
+CMD /usr/bin/node-red -v ~/.nodered/flows.json
