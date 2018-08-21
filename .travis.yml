@@ -14,7 +14,7 @@ env:
     - ARCH=armhf  NAME=mosquitto
 before_script:
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
-  - sed -ie "s/FROM alpine:3.7/FROM multiarch\/alpine:${ARCH}\-v3.7/" ${NAME}/Dockerfile
+  - sed -ie "s/FROM alpine:3.8/FROM multiarch\/alpine:${ARCH}\-v3.8/" ${NAME}/Dockerfile
 script:
   - docker build -t lafin/alpine-${NAME}:${ARCH} ${NAME}
 after_success:

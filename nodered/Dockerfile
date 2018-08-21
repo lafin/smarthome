@@ -1,15 +1,15 @@
-FROM alpine:3.7
+FROM alpine:3.8
 
 ENV NPM_CONFIG_LOGLEVEL info
 RUN apk add --no-cache --virtual .build-deps make gcc g++ python \
-    && apk add --no-cache nodejs openssl
+    && apk add --no-cache nodejs npm openssl
 
 RUN npm i --unsafe-perm -g node-red node-red-contrib-mqtt-broker \
     && apk del .build-deps
 
-VOLUME ~/.nodered
+VOLUME /root/.nodered
 
 EXPOSE 1880
-ADD entrypoint.sh .
-ENTRYPOINT ["entrypoint.sh"]
-CMD /usr/bin/node-red -v ~/.nodered/flows.json
+COPY entrypoint.sh .
+ENTRYPOINT ["./entrypoint.sh"]
+CMD ["/usr/bin/node-red", "-v", "/root/.nodered/flows.json"]

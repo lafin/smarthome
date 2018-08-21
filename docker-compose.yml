@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
 
   nodered:
@@ -10,7 +10,10 @@ services:
     ports:
       - "1880:1880"
     volumes:
-      - ${PWD}/nodered/config:/root/.nodered
+      - ./nodered/config:/root/.nodered
+    depends_on:
+      - mosquitto
+      - homebridge
     links:
       - mosquitto
 
@@ -23,7 +26,9 @@ services:
       - "5353:5353"
       - "51826:51826"
     volumes:
-      - ${PWD}/homebridge/config:/root/.homebridge
+      - ./homebridge/config:/root/.homebridge
+    depends_on:
+      - mosquitto
 
   mosquitto:
     build: ./mosquitto
