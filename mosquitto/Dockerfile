@@ -4,6 +4,7 @@ RUN apk add --no-cache mosquitto mosquitto-clients \
     && mkdir -p /mqtt/config /mqtt/data /mqtt/log
 
 COPY config /mqtt/config
+RUN chown -R mosquitto:mosquitto /mqtt
 
 EXPOSE 1883 9001
 COPY entrypoint.sh .

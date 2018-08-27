@@ -2,7 +2,6 @@ version: '3'
 services:
 
   nodered:
-    build: ./nodered
     networks:
       - microservicesnet
     environment:
@@ -10,7 +9,7 @@ services:
     ports:
       - "1880:1880"
     volumes:
-      - ./nodered/config:/root/.nodered
+      - ./nodered:/root/.nodered
     depends_on:
       - mosquitto
       - homebridge
@@ -18,7 +17,6 @@ services:
       - mosquitto
 
   homebridge:
-    build: ./homebridge
     network_mode: host
     environment:
       - SERVICE_NAME=homebridge
@@ -26,12 +24,11 @@ services:
       - "5353:5353"
       - "51826:51826"
     volumes:
-      - ./homebridge/config:/root/.homebridge
+      - ./homebridge:/root/.homebridge
     depends_on:
       - mosquitto
 
   mosquitto:
-    build: ./mosquitto
     networks:
       - microservicesnet
     environment:

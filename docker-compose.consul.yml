@@ -9,7 +9,7 @@ services:
     networks:
       - microservicesnet
     ports:
-      - 8500:8500
+      - "8500:8500"
 
   registrator:
     image: gliderlabs/registrator:latest

@@ -1,0 +1,11 @@
+version: '3'
+services:
+
+  nodered:
+    build: ./nodered
+
+  homebridge:
+    build: ./homebridge
+
+  mosquitto:
+    build: ./mosquitto
