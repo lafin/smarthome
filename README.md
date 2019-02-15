@@ -34,3 +34,5 @@ $ mkdir -p homebridge nodered && \
 $ docker-compose -f docker-compose.armhf.yml pull
 $ docker-compose -f docker-compose.yml -f docker-compose.armhf.yml -f docker-compose.deploy.yml up -d
 ```
+
+### How to add grafana and influxdb? [look here](https://github.com/lafin/grafana-influxdb)

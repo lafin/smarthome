@@ -2,7 +2,7 @@ version: '3'
 services:
 
   consul:
-    image:  gliderlabs/consul-server:latest
+    image:  gliderlabs/consul-server
     command: "-bootstrap -client 0.0.0.0"
     container_name: consul
     hostname: consul
@@ -12,7 +12,7 @@ services:
       - "8500:8500"
 
   registrator:
-    image: gliderlabs/registrator:latest
+    image: gliderlabs/registrator
     command: "-internal consul://consul:8500"
     container_name: registrator
     hostname: registrator
