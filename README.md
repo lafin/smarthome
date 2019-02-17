@@ -2,7 +2,7 @@
 ___
 
 ### Nodered
-![](flow.png)
+![](assets/flow.png)
 
 ### Settings nodered's flow
 [here](example/flow1.json)
@@ -11,7 +11,7 @@ ___
 [here](example/example1.ino)
 
 ### Result
-![](screen.png)
+<img src="assets/screen.png" height="400">
 
 ### x86_64
 ```bash
@@ -36,3 +36,7 @@ $ docker-compose -f docker-compose.yml -f docker-compose.armhf.yml -f docker-com
 ```
 
 ### How to add grafana and influxdb? [look here](https://github.com/lafin/grafana-influxdb)
+<img src="assets/grafana.png" height="300">
+
+### Existed issues
+- doesn't work on a Docker for MacOS [#issues/68](https://github.com/docker/for-mac/issues/68)
