@@ -2,41 +2,25 @@ version: '3'
 services:
 
   nodered:
-    networks:
-      - microservicesnet
+    network_mode: host
     environment:
       - SERVICE_NAME=nodered
-    ports:
-      - "1880:1880"
     volumes:
       - ./nodered:/root/.node-red
     depends_on:
       - mosquitto
       - homebridge
-    links:
-      - mosquitto
 
   homebridge:
     network_mode: host
     environment:
       - SERVICE_NAME=homebridge
-    ports:
-      - "5353:5353"
-      - "51826:51826"
     volumes:
       - ./homebridge:/root/.homebridge
     depends_on:
       - mosquitto
 
   mosquitto:
-    networks:
-      - microservicesnet
+    network_mode: host
     environment:
       - SERVICE_NAME=mosquitto
-    ports:
-      - "1883:1883"
-      - "9001:9001"
-
-networks:
-  microservicesnet:
-    driver: bridge
