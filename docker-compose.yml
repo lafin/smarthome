@@ -9,7 +9,7 @@ services:
     ports:
       - "1880:1880"
     volumes:
-      - ./nodered:/root/.nodered
+      - ./nodered:/root/.node-red
     depends_on:
       - mosquitto
       - homebridge
