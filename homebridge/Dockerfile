@@ -1,7 +1,7 @@
-FROM alpine:3.8
+FROM alpine:3.12
 
 ENV NPM_CONFIG_LOGLEVEL info
-RUN apk add --no-cache --virtual .build-deps make gcc g++ python \
+RUN apk add --no-cache --virtual .build-deps make gcc g++ python3 \
     && apk add --no-cache nodejs npm openssl avahi-compat-libdns_sd avahi-dev dbus \
     && mkdir -p /root/.homebridge/config
 RUN npm i --unsafe-perm -g homebridge homebridge-mqtt \

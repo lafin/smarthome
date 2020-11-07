@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM alpine:3.12
 
 RUN apk add --no-cache mosquitto mosquitto-clients \
     && mkdir -p /mqtt/config /mqtt/data /mqtt/log

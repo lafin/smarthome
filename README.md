@@ -1,4 +1,4 @@
-### Smarthome [![Build Status](https://travis-ci.org/lafin/smarthome.svg?branch=master)](https://travis-ci.org/lafin/smarthome)
+### Smarthome ![actions](https://github.com/lafin/smarthome/workflows/actions/badge.svg)
 ___
 
 ### Nodered
