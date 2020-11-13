@@ -28,6 +28,9 @@ $ docker-compose -f docker-compose.yml -f docker-compose.x86_64.yml up -d
 
 ### Zigbee
 https://www.zigbee2mqtt.io/getting_started/what_do_i_need.html
+```bash
+$ docker run -it -d -v $(pwd)/zigbee:/app/data --device=/dev/ttyUSB0 -e TZ=Europe/Moscow --privileged=true --restart=always --network host koenkk/zigbee2mqtt
+```
 
 ### Existed issues
 - doesn't work on a Docker for MacOS [#issues/68](https://github.com/docker/for-mac/issues/68)
