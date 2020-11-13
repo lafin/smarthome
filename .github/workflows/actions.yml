@@ -8,29 +8,18 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        include:
-          - arch: x86_64
-            name: nodered
-          - arch: armhf
-            name: nodered
-          - arch: x86_64
-            name: homebridge
-          - arch: armhf
-            name: homebridge
-          - arch: x86_64
-            name: mosquitto
-          - arch: armhf
-            name: mosquitto
+        arch: [x86_64, armhf, arm64]
+        app: [nodered, homebridge, mosquitto]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Build image
         run: |
           docker run --rm --privileged multiarch/qemu-user-static:register --reset
-          sed -ie "s/FROM alpine:3.12/FROM multiarch\/alpine:${{ matrix.arch }}\-v3.12/" ${{ matrix.name }}/Dockerfile
-          docker build -t lafin/alpine-${{ matrix.name }}:${{ matrix.arch }} ${{ matrix.name }}
+          sed -ie "s/FROM alpine:3.12/FROM multiarch\/alpine:${{ matrix.arch }}\-v3.12/" ${{ matrix.app }}/Dockerfile
+          docker build -t lafin/alpine-${{ matrix.app }}:${{ matrix.arch }} ${{ matrix.app }}
       - name: Publish image
         if: github.ref == 'refs/heads/master'
         run: |
           docker login -u $GITHUB_ACTOR -p ${{ secrets.DOCKER_TOKEN }}
-          docker push lafin/alpine-${{ matrix.name }}
+          docker push lafin/alpine-${{ matrix.app }}
