@@ -1,0 +1,8 @@
+version: '3'
+services:
+  nodered:
+    image: lafin/alpine-nodered:arm64
+  homebridge:
+    image: lafin/alpine-homebridge:arm64
+  mosquitto:
+    image: lafin/alpine-mosquitto:arm64

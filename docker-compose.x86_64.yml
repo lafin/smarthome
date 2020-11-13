@@ -1,11 +1,8 @@
 version: '3'
 services:
-
   nodered:
     image: lafin/alpine-nodered:x86_64
-
   homebridge:
     image: lafin/alpine-homebridge:x86_64
-
   mosquitto:
     image: lafin/alpine-mosquitto:x86_64

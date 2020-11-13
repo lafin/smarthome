@@ -1,6 +1,5 @@
 version: '3'
 services:
-
   nodered:
     network_mode: host
     environment:
@@ -10,7 +9,12 @@ services:
     depends_on:
       - mosquitto
       - homebridge
-
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "200k"
+        max-file: "2"
   homebridge:
     network_mode: host
     environment:
@@ -19,8 +23,19 @@ services:
       - ./homebridge:/root/.homebridge
     depends_on:
       - mosquitto
-
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "200k"
+        max-file: "2"
   mosquitto:
     network_mode: host
     environment:
       - SERVICE_NAME=mosquitto
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "200k"
+        max-file: "2"
