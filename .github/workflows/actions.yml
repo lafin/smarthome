@@ -1,6 +1,11 @@
 name: actions
 on:
   push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
   schedule:
     - cron: '0 0 * * 0'
 jobs:
@@ -11,8 +16,7 @@ jobs:
         arch: [x86_64, armhf, arm64]
         app: [nodered, homebridge, mosquitto]
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       - name: Build image
         run: |
           docker run --rm --privileged multiarch/qemu-user-static:register --reset
