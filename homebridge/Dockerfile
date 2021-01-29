@@ -1,16 +1,20 @@
-FROM alpine:3.12
+FROM alpine:3.13
 
-ENV NPM_CONFIG_LOGLEVEL info
 RUN apk add --no-cache --virtual .build-deps make gcc g++ python3 \
-    && apk add --no-cache nodejs npm openssl avahi-compat-libdns_sd avahi-dev dbus \
-    && mkdir -p /root/.homebridge/config
-RUN npm i --unsafe-perm -g homebridge homebridge-mqtt \
+    && apk add --no-cache nodejs npm openssl avahi-compat-libdns_sd avahi-dev dbus
+RUN npm i -g --unsafe-perm homebridge homebridge-mqtt \
     && apk del .build-deps
+RUN apk add --no-cache dumb-init
 
-COPY config/config.json /root/.homebridge/
-VOLUME /root/.homebridge
+ENV NODE_ENV production
+USER root
+WORKDIR /root
+RUN mkdir -p ./.homebridge/config
+COPY ./config/config.json ./.homebridge/
+COPY entrypoint.sh .
+
+VOLUME ./.homebridge
 
 EXPOSE 5353 51826
-COPY entrypoint.sh .
-ENTRYPOINT ["./entrypoint.sh"]
-CMD ["homebridge"]
+ENTRYPOINT ["/root/entrypoint.sh"]
+CMD ["dumb-init", "homebridge", "-U", "/root/.homebridge"]

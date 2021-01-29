@@ -5,7 +5,7 @@ services:
     environment:
       - SERVICE_NAME=nodered
     volumes:
-      - ./nodered:/root/.node-red
+      - ./nodered:/home/node/.node-red
     depends_on:
       - mosquitto
       - homebridge
