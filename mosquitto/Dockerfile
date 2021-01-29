@@ -1,12 +1,16 @@
-FROM alpine:3.12
+FROM alpine:3.13
 
-RUN apk add --no-cache mosquitto mosquitto-clients \
-    && mkdir -p /mqtt/config /mqtt/data /mqtt/log
+RUN apk add --no-cache mosquitto mosquitto-clients
 
-COPY config /mqtt/config
-RUN chown -R mosquitto:mosquitto /mqtt
+RUN addgroup -g 1000 mqtt \
+    && adduser -u 1000 -G mqtt -s /bin/sh -D mqtt
+
+USER mqtt
+WORKDIR /home/mqtt
+RUN mkdir -p ./.mosquitto/config ./.mosquitto/data ./.mosquitto/log
+COPY --chown=mqtt:mqtt config ./.mosquitto/config
+COPY --chown=mqtt:mqtt entrypoint.sh .
 
 EXPOSE 1883 9001
-COPY entrypoint.sh .
-ENTRYPOINT ["./entrypoint.sh"]
-CMD ["/usr/sbin/mosquitto", "-c", "/mqtt/config/mosquitto.conf"]
+ENTRYPOINT ["/home/mqtt/entrypoint.sh"]
+CMD ["mosquitto", "-c", "/home/mqtt/.mosquitto/config/mosquitto.conf"]

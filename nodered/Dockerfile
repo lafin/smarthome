@@ -1,15 +1,20 @@
-FROM alpine:3.12
+FROM alpine:3.13
 
-ENV NPM_CONFIG_LOGLEVEL info
-RUN apk add --no-cache --virtual .build-deps make gcc g++ python3 \
+RUN apk add --no-cache --virtual .build-deps make gcc g++ python2 \
     && apk add --no-cache nodejs npm openssl
-
-RUN npm i --unsafe-perm -g node-red node-red-contrib-mqtt-broker \
+RUN npm i -g --unsafe-perm node-red node-red-contrib-mqtt-broker \
     && apk del .build-deps
+RUN apk add --no-cache dumb-init
 
-VOLUME /root/.node-red
+RUN addgroup -g 1000 node \
+    && adduser -u 1000 -G node -s /bin/sh -D node
+
+ENV NODE_ENV production
+USER node
+WORKDIR /home/node
+VOLUME ./.node-red
+COPY --chown=node:node entrypoint.sh .
 
 EXPOSE 1880
-COPY entrypoint.sh .
-ENTRYPOINT ["./entrypoint.sh"]
-CMD ["/usr/bin/node-red", "-v", "/root/.node-red/flows.json"]
+ENTRYPOINT ["/home/node/entrypoint.sh"]
+CMD ["dumb-init", "node-red", "-v", "/home/node/.node-red/flows.json"]
