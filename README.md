@@ -17,10 +17,9 @@ ___
 ```bash
 $ mkdir -p homebridge nodered && \
   curl -O https://raw.githubusercontent.com/lafin/smarthome/master/docker-compose.yml && \
-  curl -O https://raw.githubusercontent.com/lafin/smarthome/master/docker-compose.x86_64.yml && \
   curl -o homebridge/config.json https://raw.githubusercontent.com/lafin/smarthome/master/homebridge/config/config.json
-$ docker-compose -f docker-compose.x86_64.yml pull
-$ docker-compose -f docker-compose.yml -f docker-compose.x86_64.yml up -d
+$ docker-compose pull
+$ docker-compose up -d
 ```
 
 ### How to add grafana and influxdb? [look here](https://github.com/lafin/grafana-influxdb)

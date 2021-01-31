@@ -1,4 +1,4 @@
-FROM alpine:3.13
+FROM alpine
 
 RUN apk add --no-cache --virtual .build-deps make gcc g++ python3 \
     && apk add --no-cache nodejs npm openssl avahi-compat-libdns_sd avahi-dev dbus
