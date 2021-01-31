@@ -1,4 +1,4 @@
-FROM alpine:3.13
+FROM --platform=$BUILDPLATFORM alpine
 
 RUN apk add --no-cache --virtual .build-deps make gcc g++ python2 \
     && apk add --no-cache nodejs npm openssl

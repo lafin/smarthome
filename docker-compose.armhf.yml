@@ -1,8 +1,0 @@
-version: '3'
-services:
-  nodered:
-    image: lafin/alpine-nodered:armhf
-  homebridge:
-    image: lafin/alpine-homebridge:armhf
-  mosquitto:
-    image: lafin/alpine-mosquitto:armhf
