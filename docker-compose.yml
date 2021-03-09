@@ -1,7 +1,7 @@
 version: '3'
 services:
   nodered:
-    image: ghcr.io/lafin/alpine-nodered
+    image: ghcr.io/lafin/nodered
     network_mode: host
     environment:
       - SERVICE_NAME=nodered
@@ -17,7 +17,7 @@ services:
         max-size: "200k"
         max-file: "2"
   homebridge:
-    image: ghcr.io/lafin/alpine-homebridge
+    image: ghcr.io/lafin/homebridge
     network_mode: host
     environment:
       - SERVICE_NAME=homebridge
@@ -32,7 +32,7 @@ services:
         max-size: "200k"
         max-file: "2"
   mosquitto:
-    image: ghcr.io/lafin/alpine-mosquitto
+    image: ghcr.io/lafin/mosquitto
     network_mode: host
     environment:
       - SERVICE_NAME=mosquitto

@@ -22,13 +22,10 @@ $ docker-compose pull
 $ docker-compose up -d
 ```
 
-### How to add grafana and influxdb? [look here](https://github.com/lafin/grafana-influxdb)
-<img src="assets/grafana.png" height="300">
-
 ### Zigbee
 https://www.zigbee2mqtt.io/getting_started/what_do_i_need.html
 ```bash
-$ docker run -it -d -v $(pwd)/zigbee:/app/data --device=/dev/ttyUSB0 -e TZ=Europe/Moscow --privileged=true --restart=always --network host koenkk/zigbee2mqtt
+$ docker run -it -d -v $(pwd)/zigbee:/app/data --device=/dev/ttyUSB0 -e TZ=Europe/Tallinn --privileged=true --restart=always --network host koenkk/zigbee2mqtt
 ```
 
 ### Existed issues
