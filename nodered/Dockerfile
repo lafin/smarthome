@@ -1,6 +1,6 @@
 FROM alpine
 
-RUN apk add --no-cache --virtual .build-deps make gcc g++ python2 \
+RUN apk add --no-cache --virtual .build-deps make gcc g++ python2 krb5-dev zeromq-dev \
     && apk add --no-cache nodejs npm openssl
 RUN npm i -g --unsafe-perm node-red node-red-contrib-mqtt-broker \
     && apk del .build-deps
