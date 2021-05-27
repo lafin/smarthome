@@ -42,3 +42,21 @@ services:
       options:
         max-size: "200k"
         max-file: "2"
+  zigbee2mqtt:
+    image: koenkk/zigbee2mqtt
+    network_mode: host
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    environment:
+      - SERVICE_NAME=zigbee
+      - TZ=Europe/Tallinn
+    volumes:
+      - ./zigbee:/app/data
+    depends_on:
+      - mosquitto
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "200k"
+        max-file: "2"

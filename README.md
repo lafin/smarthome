@@ -25,7 +25,25 @@ $ docker-compose up -d
 ### Zigbee
 https://www.zigbee2mqtt.io/getting_started/what_do_i_need.html
 ```bash
-$ docker run -it -d -v $(pwd)/zigbee:/app/data --device=/dev/ttyUSB0 -e TZ=Europe/Tallinn --privileged=true --restart=always --network host koenkk/zigbee2mqtt
+$ cat zigbee/configuration.yaml
+homeassistant: false
+permit_join: true
+mqtt:
+  base_topic: zigbee2mqtt
+  server: 'mqtt://localhost'
+serial:
+  port: /dev/ttyUSB0
+advanced:
+  log_level: debug
+devices:
+  '0x842e14fffe68246d':
+    friendly_name: socket1
+  '0x00158d0004a0165d':
+    friendly_name: 'sensor1'
+  '0x00158d00048533d7':
+    friendly_name: 'sensor2'
+  '0x00158d000632be03':
+    friendly_name: 'sensor3'
 ```
 
 ### Existed issues
