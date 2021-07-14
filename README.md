@@ -1,19 +1,16 @@
 ### Smarthome ![actions](https://github.com/lafin/smarthome/workflows/actions/badge.svg)
 ___
 
+### How it works
+<img src="assets/schema.png" height="400">
+
 ### Nodered
 ![](assets/flow.png)
-
-### Settings nodered's flow
-[here](example/flow1.json)
-
-### Sketch (temperature+humidity+relay)
-[here](example/example1.ino)
 
 ### Result
 <img src="assets/screen.png" height="400">
 
-### x86_64 (armhf, arm64)
+### x86_64, armhf, arm64
 ```bash
 $ mkdir -p homebridge nodered && \
   curl -O https://raw.githubusercontent.com/lafin/smarthome/master/docker-compose.yml && \
@@ -36,14 +33,6 @@ serial:
 advanced:
   log_level: debug
 devices:
-  '0x842e14fffe68246d':
-    friendly_name: socket1
-  '0x00158d0004a0165d':
-    friendly_name: 'sensor1'
-  '0x00158d00048533d7':
-    friendly_name: 'sensor2'
-  '0x00158d000632be03':
-    friendly_name: 'sensor3'
 ```
 
 ### Existed issues
