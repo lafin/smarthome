@@ -4,7 +4,7 @@ RUN apk add --no-cache --virtual .build-deps make gcc g++ python2 krb5-dev zerom
     && apk add --no-cache nodejs npm openssl
 RUN npm i -g --unsafe-perm node-red node-red-contrib-mqtt-broker \
     && apk del .build-deps
-RUN apk add --no-cache dumb-init
+RUN apk add --no-cache dumb-init tzdata
 
 RUN addgroup -g 1000 node \
     && adduser -u 1000 -G node -s /bin/sh -D node

@@ -1,6 +1,6 @@
 FROM alpine
 
-RUN apk add --no-cache mosquitto mosquitto-clients
+RUN apk add --no-cache mosquitto mosquitto-clients tzdata
 
 RUN addgroup -g 1000 mqtt \
     && adduser -u 1000 -G mqtt -s /bin/sh -D mqtt

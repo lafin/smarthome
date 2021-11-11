@@ -5,6 +5,7 @@ services:
     network_mode: host
     environment:
       - SERVICE_NAME=nodered
+      - TZ=Europe/Tallinn
     volumes:
       - ./nodered:/home/node/.node-red
     depends_on:
@@ -21,6 +22,7 @@ services:
     network_mode: host
     environment:
       - SERVICE_NAME=homebridge
+      - TZ=Europe/Tallinn
     volumes:
       - ./homebridge:/root/.homebridge
     depends_on:
@@ -36,6 +38,7 @@ services:
     network_mode: host
     environment:
       - SERVICE_NAME=mosquitto
+      - TZ=Europe/Tallinn
     restart: unless-stopped
     logging:
       driver: json-file
