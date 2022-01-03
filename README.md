@@ -16,7 +16,7 @@ $ mkdir -p homebridge nodered && \
   curl -O https://raw.githubusercontent.com/lafin/smarthome/master/docker-compose.yml && \
   curl -o homebridge/config.json https://raw.githubusercontent.com/lafin/smarthome/master/homebridge/config/config.json
 $ docker-compose pull
-$ docker-compose up -d
+$ TZ=Europe/Tallinn docker-compose up -d
 ```
 
 ### Zigbee
