@@ -1,8 +1,8 @@
 FROM alpine
 
-RUN apk add --no-cache --virtual .build-deps make gcc g++ python2 krb5-dev zeromq-dev \
+RUN apk add --no-cache --virtual .build-deps make gcc g++ python3 krb5-dev zeromq-dev \
     && apk add --no-cache nodejs npm openssl
-RUN npm i -g --unsafe-perm node-red node-red-contrib-mqtt-broker \
+RUN npm i -g node-red node-red-contrib-mqtt-broker \
     && apk del .build-deps
 RUN apk add --no-cache dumb-init tzdata
 
