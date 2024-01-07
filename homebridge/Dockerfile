@@ -1,8 +1,8 @@
-FROM alpine
+FROM alpine:3.18
 
 RUN apk add --no-cache --virtual .build-deps make gcc g++ python3 \
     && apk add --no-cache nodejs npm openssl avahi-compat-libdns_sd avahi-dev dbus
-RUN npm i -g homebridge homebridge-mqtt \
+RUN npm i -g homebridge homebridge-mqtt homebridge-config-ui-x \
     && apk del .build-deps
 RUN apk add --no-cache dumb-init tzdata
 
@@ -15,6 +15,6 @@ COPY entrypoint.sh .
 
 VOLUME ./.homebridge
 
-EXPOSE 5353 51826
+EXPOSE 5353 8581 51826
 ENTRYPOINT ["/root/entrypoint.sh"]
-CMD ["dumb-init", "homebridge", "-U", "/root/.homebridge"]
+CMD ["dumb-init", "hb-service", "run", "--allow-root", "-U", "/root/.homebridge"]

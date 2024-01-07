@@ -9,6 +9,12 @@
     "accessories": [],
     "platforms": [
         {
+            "platform": "config",
+            "name": "Config",
+            "port": 8581,
+            "sudo": false
+        },
+        {
             "platform": "mqtt",
             "name": "mqtt",
             "url": "mqtt://127.0.0.1",
