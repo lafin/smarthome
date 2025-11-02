@@ -1,4 +1,4 @@
-FROM alpine:3.18
+FROM alpine:3.22
 
 RUN apk add --no-cache --virtual .build-deps make gcc g++ python3 krb5-dev zeromq-dev \
     && apk add --no-cache nodejs npm openssl
